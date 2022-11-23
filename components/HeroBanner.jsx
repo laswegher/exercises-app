@@ -17,14 +17,15 @@ const HeroBanner = () => {
         <p className="max-w-[250px]">
           Check ut the most effective exercises person
         </p>
-        <Button className="mt-2">Explore</Button>
+        <Button className="mt-2">Explore Exercises</Button>
         <div className="hidden sm:block sm:text-[120px] md:text-[140px] lg:text-[190px] text-gray-200 tracking-widest ">
           Exercises
         </div>
         <div className="absolute h-full rounded-bl-[70px] hidden sm:block sm:w-[300px] md:w-[390px] lg:w-[500px] right-0 top-[-128px]">
           <Image
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fill"
             src={heroImage}
+            priority
             alt="banner"
           />
         </div>
