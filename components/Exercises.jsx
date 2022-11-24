@@ -1,13 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import ExerciseContext from '../context/ExerciseProvider';
 import { options, fetchData } from '../utils/FETCH_DATA';
+import ExerciseCard from './ExerciseCard';
+import Pagination from './Pagination';
 
 const Exercises = () => {
-  const { selectedBodyPart } = useContext(ExerciseContext);
-  console.log(selectedBodyPart);
-  const { exercises, setExercises } = useContext(ExerciseContext);
+  const {
+    selectedBodyPart,
+    exercises,
+    setExercises,
+    currentIndex,
+    amountItems,
+  } = useContext(ExerciseContext);
 
+  // Taking data from api
   useEffect(() => {
     const getApiData = async () => {
       const exercisesData = await fetchData(
@@ -21,83 +28,38 @@ const Exercises = () => {
         `,
         options
       );
-
+      localStorage.setItem('data', JSON.stringify(exercisesData));
       setExercises(exercisesData);
     };
 
-    // Delete it after
-    setExercises([
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/1403.gif',
-        id: '1403',
-        name: 'neck side stretch',
-        target: 'levator scapulae',
-      },
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0716.gif',
-        id: '0716',
-        name: 'side push neck stretch',
-        target: 'levator scapulae',
-      },
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/1403.gif',
-        id: '1403',
-        name: 'neck side stretch',
-        target: 'levator scapulae',
-      },
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0716.gif',
-        id: '0716',
-        name: 'side push neck stretch',
-        target: 'levator scapulae',
-      },
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/1403.gif',
-        id: '1403',
-        name: 'neck side stretch',
-        target: 'levator scapulae',
-      },
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0716.gif',
-        id: '0716',
-        name: 'side push neck stretch',
-        target: 'levator scapulae',
-      },
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/1403.gif',
-        id: '1403',
-        name: 'neck side stretch',
-        target: 'levator scapulae',
-      },
-      {
-        bodyPart: 'neck',
-        equipment: 'body weight',
-        gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0716.gif',
-        id: '0716',
-        name: 'side push neck stretch',
-        target: 'levator scapulae',
-      },
-    ]);
-
+    setExercises(JSON.parse(localStorage.getItem('data')));
     //uncomment after
     // getApiData();
   }, [selectedBodyPart]);
 
-  return <div className="max-w-5xl mx-auto my-28">Exercises</div>;
+  // Slicing Exercises arry useing .slice() method
+  const lastIndex = currentIndex * amountItems;
+  const firstIndex = lastIndex - amountItems;
+  const showenItems = exercises.slice(firstIndex, lastIndex);
+
+  return (
+    <div id="exercises mt-10">
+      <div className="max-w-5xl mx-auto my-28 px-3 sm:px-10">
+        <h3 className="mb-5">Showing Results</h3>
+
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          {showenItems.map((exercise, i) => {
+            return (
+              <div key={i}>
+                <ExerciseCard {...exercise} />
+              </div>
+            );
+          })}
+        </div>
+        <Pagination />
+      </div>
+    </div>
+  );
 };
 
 export default Exercises;

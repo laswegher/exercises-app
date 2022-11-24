@@ -14,7 +14,13 @@ export const ExerciseProvider = ({ children }) => {
   //Selected body part state
   const [selectedBodyPart, setSelectedBodyPart] = useState('all');
 
-  console.log(exercises);
+  //Current page state
+  const [currentIndex, setCurrentIndex] = useState(1);
+
+  //Items amount perpage
+  const [amountItems, setAmountItems] = useState(9);
+
+  console.log(selectedBodyPart);
 
   return (
     <ExerciseContext.Provider
@@ -25,6 +31,10 @@ export const ExerciseProvider = ({ children }) => {
         setExercises,
         selectedBodyPart,
         setSelectedBodyPart,
+        currentIndex,
+        setCurrentIndex,
+        amountItems,
+        setAmountItems,
       }}
     >
       {children}

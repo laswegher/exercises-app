@@ -1,18 +1,17 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  HiArrowNarrowLeft,
-  HiArrowNarrowRight,
-} from 'react-icons/hi';
-
-import {
-  ScrollMenu,
-  VisibilityContext,
-} from 'react-horizontal-scrolling-menu';
 import BodyPartCard from './BodyPartCard';
 
 const BodyParts = () => {
+  const [rightWidth, setRightWidth] = useState(0);
+  const caurosel = useRef();
+
+  useEffect(() => {
+    setRightWidth(
+      caurosel.current.scrollWidth - caurosel.current.offsetWidth
+    );
+  }, []);
+
   // Array of Body parts
   const bodyParts = [
     'all',
@@ -28,50 +27,15 @@ const BodyParts = () => {
     'waist',
   ];
 
-  {
-    /* Left Arrow Function */
-  }
-  function LeftArrow() {
-    const { scrollPrev } = useContext(VisibilityContext);
-
-    return (
-      <motion.div
-        initial={{ scale: 1 }}
-        whileHover={{ scale: 1.2 }}
-        transition={{ type: 'spring', striffness: 600 }}
-        className="text-3xl sm:text-4xl cursor-pointer absolute bottom-2"
-        onClick={() => scrollPrev()}
-      >
-        <HiArrowNarrowLeft />
-      </motion.div>
-    );
-  }
-
-  {
-    /* Right Arrow Function */
-  }
-
-  function RightArrow() {
-    const { scrollNext } = useContext(VisibilityContext);
-
-    return (
-      <motion.div
-        initial={{ scale: 1 }}
-        whileHover={{ scale: 1.2 }}
-        transition={{ type: 'spring', striffness: 600 }}
-        className="text-3xl sm:text-4xl cursor-pointer absolute bottom-2 right-8"
-        onClick={() => scrollNext()}
-      >
-        <HiArrowNarrowRight />
-      </motion.div>
-    );
-  }
-
   return (
-    <div className="relative text-red-500  px-8 py-10 shadow-xl">
-      <ScrollMenu
-        LeftArrow={LeftArrow}
-        RightArrow={RightArrow}
+    <motion.div
+      ref={caurosel}
+      className="overflow-hidden  text-red-500  px-8 py-10 shadow-xl"
+    >
+      <motion.div
+        drag="x"
+        dragConstraints={{ right: 0, left: -rightWidth }}
+        className="flex"
       >
         {bodyParts.map((item) => {
           return (
@@ -84,8 +48,8 @@ const BodyParts = () => {
             </div>
           );
         })}
-      </ScrollMenu>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
