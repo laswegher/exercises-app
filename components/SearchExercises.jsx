@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import { options, fetchData } from '../utils/FETCH_DATA';
-import { useContext } from 'react';
 import ExerciseContext from '../context/ExerciseProvider';
-
 import Button from '../components/Button';
-import BodyParts from '../components/BodyParts';
+import HorizontalSlider from '../components/HorizontalSlider';
+import body_parts_data from '../data/body_parts_data';
 
 const SearchExercises = () => {
   // User search data state
@@ -67,7 +66,10 @@ const SearchExercises = () => {
           </Button>
         </form>
 
-        <BodyParts />
+        <HorizontalSlider
+          data={body_parts_data}
+          isBodyParts
+        />
       </div>
     </div>
   );

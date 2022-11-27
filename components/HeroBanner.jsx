@@ -7,14 +7,14 @@ const HeroBanner = () => {
   return (
     <div className="px-3 sm:px-10">
       {/* Container */}
-      <div className="relative h-full max-w-5xl mx-auto">
+      <div className="relative text-center sm:text-left h-full max-w-5xl mx-auto">
         <h4 className="text-red-500 md:pt-10 lg:pt-20">
           Fitness Club
         </h4>
         <h1 className="mt-6 mb-8 md:mt-6 md:mb-10 lg:mt-8 lg:mb-12">
           Sweat, Smile <br /> And Repeat
         </h1>
-        <p className="max-w-[250px]">
+        <p className="sm:max-w-[250px]">
           Check ut the most effective exercises person
         </p>
         <Button className="mt-2">Explore Exercises</Button>

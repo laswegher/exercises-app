@@ -10,27 +10,25 @@ const BodyPartCard = ({ item }) => {
     useContext(ExerciseContext);
 
   return (
-    <Link
-      draggable="false"
-      href="/#exercises"
+    <motion.div
+      style={{
+        borderTop: `${
+          selectedBodyPart === item ? '3px solid red' : 'none'
+        }`,
+      }}
+      className="flex-1 w-[200px] h-40 sm:h-44 md:h-52 flex flex-col items-center justify-center shadow-lg  bg-white m-4"
     >
-      <motion.div
-        style={{
-          borderTop: `${
-            selectedBodyPart === item ? '3px solid red' : 'none'
-          }`,
-        }}
-        className="w-[200px] sm:w-[250px] md:w-[326px] h-40 sm:h-44 md:h-52 flex flex-col items-center justify-center shadow-lg  bg-white m-4"
-      >
-        {/* Icons */}
-        <div className="w-10 h-10">
-          <Image
-            src={icon}
-            alt={item}
-            className="w-full  h-full object-cover"
-          />
-        </div>
-        {/* Title */}
+      {/* Icons */}
+      <div className="w-10 h-10">
+        <Image
+          draggable="false"
+          src={icon}
+          alt={item}
+          className="w-full  h-full object-cover"
+        />
+      </div>
+      {/* Title */}
+      <Link href="/#exercises">
         <motion.p
           initial={{ scale: 1 }}
           whileHover={{ scale: 1.05 }}
@@ -43,8 +41,8 @@ const BodyPartCard = ({ item }) => {
         >
           {item}
         </motion.p>
-      </motion.div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 };
 

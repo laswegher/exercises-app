@@ -36,7 +36,7 @@ const Navbar = () => {
             </motion.li>
           </Link>
 
-          <Link href="/exercises">
+          <Link href="/#exercises">
             <motion.li
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.05 }}

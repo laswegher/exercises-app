@@ -20,8 +20,6 @@ export const ExerciseProvider = ({ children }) => {
   //Items amount perpage
   const [amountItems, setAmountItems] = useState(9);
 
-  console.log(selectedBodyPart);
-
   return (
     <ExerciseContext.Provider
       value={{

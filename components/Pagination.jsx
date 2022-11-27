@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import ExerciseContext from '../context/ExerciseProvider';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import {
   FaLongArrowAltLeft,
   FaLongArrowAltRight,
@@ -33,7 +31,7 @@ const Pagination = () => {
           <motion.div
             onClick={() => {
               decriment();
-              window.scrollTo({ top: 1500 });
+              window.scrollTo({ top: 1300 });
             }}
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.2 }}
@@ -41,9 +39,10 @@ const Pagination = () => {
               type: 'spring',
               stiffness: 500,
             }}
+            className="p-2"
           >
             <FaLongArrowAltLeft
-              size={30}
+              size={20}
               className="text-red-500"
             />
           </motion.div>
@@ -51,7 +50,7 @@ const Pagination = () => {
 
         <p
           className="
-          border flex items-center justify-center w-10 h-10 rounded-full
+          border flex items-center justify-center w-8 h-8 rounded-full
           cursor-pointer font-bold bg-red-500 text-white"
         >
           {currentIndex}
@@ -62,7 +61,7 @@ const Pagination = () => {
           <motion.div
             onClick={() => {
               incriment();
-              window.scrollTo({ top: 1500 });
+              window.scrollTo({ top: 1450 });
             }}
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.2 }}
@@ -70,9 +69,10 @@ const Pagination = () => {
               type: 'spring',
               stiffness: 500,
             }}
+            className="p-2"
           >
             <FaLongArrowAltRight
-              size={30}
+              size={20}
               className="text-red-500"
             />
           </motion.div>
