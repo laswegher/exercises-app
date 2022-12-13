@@ -17,6 +17,9 @@ module.exports = {
 
     RAPID_API_KEY_4:
       '699c8a5544msh66ab30a8abeaaa5p1c2ed8jsn8d1e47fee9a0',
+
+    RAPID_API_KEY_5:
+      'e4ec12bd4emsh8d07eccd3cca1e2p10b0d4jsn72631b4cc16f',
   },
 
   images: {
